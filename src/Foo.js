@@ -1,4 +1,20 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
+import './App.css';
+
+function Example() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <h6>{count} times</h6>
+      <button id="Submit"
+              onClick={() => setCount(count + 1)}
+              className="Buttn">
+        Submit
+      </button>
+    </div>
+  );
+}
 
 export default class Foo extends Component {
   constructor(props) {
@@ -15,25 +31,23 @@ export default class Foo extends Component {
         <form onSubmit={this.handleSubmit}>
           <lable htmlFor="elem">Enter new element </lable>
           <input
+            placeholder="Example: TUTUTU"
+            className="Text-box"
             id="elem"
             onChange={this.handleChange}
             value={this.state.text}
-            style={{ width: "200px",
-                      flex: 1,
-                      justifyContent: 'space-between',
-                      padding: 4,
-                      flexDirection:'row',
-                      alignItems:'center'
-                      }}
             />
-          <button
-            style={{ padding: 4, width: "90px" }}
-          >Submit</button>
+          <Example />
+          <button className="Buttn">Delete last element</button>
         </form>
         <FooList items={this.state.items} />
       </div>
     )
   }
+
+
+
+
   handleChange(e){
     this.setState({ text: e.target.value });
   }
@@ -50,13 +64,15 @@ export default class Foo extends Component {
       items: state.items.concat(newItem),
       text: ''
     }));
+
   }
 }
+
 
 class FooList extends Component {
   render() {
     return (
-      <ul>
+      <ul>{this.props.items.length} elements
         {this.props.items.map(item => (
           <li key={item.id}>{item.text}</li>
         ))}

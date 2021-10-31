@@ -1,7 +1,7 @@
 import React, { Component, useState } from "react";
 import './App.css';
 
-function Example() {
+function SubButton() {
   const [count, setCount] = useState(0);
 
   return (
@@ -10,11 +10,27 @@ function Example() {
       <button id="Submit"
               onClick={() => setCount(count + 1)}
               className="Buttn">
-        Submit
+        Submit new element
       </button>
     </div>
   );
 }
+
+function DelButton() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <h6>{count} times</h6>
+      <button id="Delete"
+              onClick={() => setCount(count + 1)}
+              className="Buttn">
+        Delete last element
+      </button>
+    </div>
+  );
+}
+
 
 export default class Foo extends Component {
   constructor(props) {
@@ -37,25 +53,26 @@ export default class Foo extends Component {
             onChange={this.handleChange}
             value={this.state.text}
             />
-          <Example />
-          <button className="Buttn">Delete last element</button>
+          <SubButton />
+          <DelButton />
         </form>
         <FooList items={this.state.items} />
       </div>
+
     )
   }
-
-
 
 
   handleChange(e){
     this.setState({ text: e.target.value });
   }
   handleSubmit(e){
+    var btn = document.getElementById("Submit");
     e.preventDefault();
     if (this.state.text.length === 0) {
       return;
     }
+
     const newItem = {
       text: this.state.text,
       id: Date.now()

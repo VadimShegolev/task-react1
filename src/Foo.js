@@ -55,13 +55,28 @@ export default class Foo extends Component {
             />
           <SubButton />
           <DelButton />
+          <button
+            onClick={() => this.handleDelete()}
+           >
+           Deleteee
+           </button>
         </form>
         <FooList items={this.state.items} />
+        <h3>
+
+        </h3>
       </div>
 
     )
   }
 
+  handleDelete = i => {
+    if(this.state.count > 0){
+    this.setState(state => {
+      const list = state.list.filter((item, j) => i !== j);
+      return {list};
+  });}
+  }
 
   handleChange(e){
     this.setState({ text: e.target.value });

@@ -1,11 +1,11 @@
 import './App.css';
-import Foo from './Foo.js';
+import List from './List.js';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Foo />
+        <List />
       </header>
     </div>
   );

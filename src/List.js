@@ -7,12 +7,28 @@ export default class List extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      items: [], 
-      text: '',
+      items: [{id:"0", text:""}], 
+      //text: '',
       addCount: 0,
       delCount: 0 
     };
   }
+
+  addElem= () =>{
+    let items = [...this.state.items];
+    items.push({text: loremIpsum()});
+    this.setState({
+      items,
+      addCount: this.state.addCount + 1,
+      id: Date.now
+    })
+  }
+ 
+  delElem= () =>{
+    this.state.items.pop();
+    this.setState({delCount: this.state.delCount + 1});
+  }
+
   render() {
     return (
       <div>
@@ -39,16 +55,4 @@ export default class List extends Component {
     )
   }
 
-  addElem= () =>{
-    this.state.items.push({text: loremIpsum({count: 1})});
-    this.setState({addCount: this.state.addCount + 1});
-  }
- 
-  delElem= () =>{
-    this.state.items.pop();
-    this.setState({delCount: this.state.delCount + 1});
-  }
 }
-
-
-
